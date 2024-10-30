@@ -8,9 +8,9 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
   min-height: 100vh;
   background: #FBFBFB;
 }
@@ -24,3 +24,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+button{
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}

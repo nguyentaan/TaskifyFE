@@ -1,0 +1,35 @@
+<div class="task-list-container">
+  <h2>Your Tasks</h2>
+
+  <!-- Task Filter Component for selecting filter status -->
+  <app-task-filter></app-task-filter>
+
+  <!-- Task Cards -->
+  <ng-container *ngIf="true; else noTasks">
+    <mat-card class="task-card">
+      <mat-card-header>
+        <mat-checkbox aria-label="Mark task as complete or incomplete">
+          Sample Task Title
+        </mat-checkbox>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Sample task description goes here.</p>
+        <p><strong>Due:</strong> Sample Date</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary">Edit</button>
+        <button mat-button color="warn">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+
+  <!-- No Tasks Message -->
+  <ng-template #noTasks>
+    <p>No tasks available. Please add a new task!</p>
+  </ng-template>
+
+  <!-- Floating Action Button to add a new task -->
+  <button mat-fab color="accent" class="add-task-btn">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

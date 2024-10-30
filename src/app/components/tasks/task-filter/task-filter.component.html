@@ -1,0 +1,9 @@
+<mat-button-toggle-group
+  [(ngModel)]="filterStatus"
+  aria-label="Task Filter"
+  (change)="filterChange.emit(filterStatus)"
+>
+  <mat-button-toggle value="all">All</mat-button-toggle>
+  <mat-button-toggle value="completed">Completed</mat-button-toggle>
+  <mat-button-toggle value="incomplete">Incomplete</mat-button-toggle>
+</mat-button-toggle-group>
