@@ -1,15 +1,126 @@
 .task-list-container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
+  display: grid; /* Use grid layout */
+  grid-template-columns: repeat(4, 1fr); /* Three columns */
+  gap: 16px; /* Space between grid items */
+  padding: 16px; /* Add some padding around the container */
 }
 
-.task-card {
-  margin-bottom: 15px;
+/* From Uiverse.io by akshat-patel28 */
+.card {
+  width: 330px;
+  height: 80px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  background-color: #ffffff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 15px;
+}
+/* From Uiverse.io by andrew-demchenk0 */
+.checkbox-container {
+  --input-focus: #269b24;
+  --input-out-of-focus: #ccc;
+  --bg-color: #fff;
+  --bg-color-alt: #666;
+  --main-color: #323232;
+  position: relative;
+  cursor: pointer;
+  display: inline-block; /* Allow the container to size to its content */
 }
 
-.add-task-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  /* You can keep the input size as it is hidden */
+}
+
+.checkmark {
+  width: 20px; /* Width of the checkbox */
+  height: 20px; /* Height of the checkbox */
+  position: relative;
+  top: 0;
+  left: 0;
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--input-out-of-focus);
+  transition: all 0.3s;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #269b24;
+}
+
+.checkmark:after {
+  content: "";
+  width: 4px; /* Width of the checkmark */
+  height: 10px; /* Height of the checkmark */
+  position: absolute;
+  top: 1px; /* Adjusted to fit well within the checkbox */
+  left: 5px; /* Centered within the checkbox */
+  display: none;
+  border: solid var(--bg-color);
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.icon {
+  width: 17px;
+  height: 17px;
+  color: #269b24;
+}
+.message-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+.message-text,
+.sub-text {
+  margin: 0;
+  cursor: default;
+}
+.message-text {
+  color: #269b24;
+  font-size: 17px;
+  font-weight: 700;
+}
+.sub-text {
+  font-size: 14px;
+  color: #555;
+}
+.cross-icon {
+  width: 18px;
+  height: 18px;
+  color: #555;
+  cursor: pointer;
+}
+
+.action-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .task-list-container {
+    grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .task-list-container {
+    grid-template-columns: 1fr; /* One column for small screens */
+  }
 }

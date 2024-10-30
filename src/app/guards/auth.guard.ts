@@ -9,8 +9,12 @@ export class AuthGuard {
   constructor(public router: Router) {}
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
-    return !!token; // Return true if the token exists, false otherwise
+    // Check for `window` to ensure it's a browser environment
+    if (typeof window !== 'undefined' && localStorage) {
+      const token = localStorage.getItem('token');
+      return !!token; // Return true if the token exists, false otherwise
+    }
+    return false; // Return false if not in a browser environment
   }
 }
 
