@@ -1,0 +1,39 @@
+/* Styles for the button toggle group */
+mat-button-toggle-group {
+  display: flex;
+  justify-content: center; /* Center align the buttons */
+  margin: 0 0 20px 0; /* Add some margin for spacing */
+  border: none;
+}
+
+/* Styles for individual button toggles */
+mat-button-toggle {
+  width: 150px;
+  background-color: #f5f5f5; /* Light background color */
+  color: #333; /* Text color */
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  margin: 0 5px; /* Space between buttons */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+/* Hover effect */
+mat-button-toggle:hover {
+  background-color: #e0e0e0; /* Darker background on hover */
+  color: #000; /* Darker text color */
+}
+
+/* Active/selected state */
+mat-button-toggle.mat-button-toggle-checked {
+  background-color: #4ca3fa; /* Main color for active button */
+  color: white; /* White text color for active state */
+  border-color: #4ca3fa; /* Match border color with background */
+}
+
+/* Adjustments for small screens */
+@media (max-width: 600px) {
+  mat-button-toggle {
+    flex: 1; /* Make buttons flexible for smaller screens */
+    margin: 0 2px; /* Reduce margin for better fit */
+  }
+}

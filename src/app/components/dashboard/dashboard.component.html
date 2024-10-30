@@ -2,8 +2,8 @@
   <div class="header">
     <h1>Taskify</h1>
     <div class="group-btn">
-      <button class="add-btn">+ Add New Task</button>
-      <button class="logout-btn">
+      <button class="add-btn" (click)="toggleAddTask()">+ Add New Task</button>
+      <button class="logout-btn" (click)="logout()">
         <svg
           width="24px"
           height="24px"
@@ -36,9 +36,52 @@
       </button>
     </div>
   </div>
+  <h3 class="username">Hello, {{ userData.unique_name }}</h3>
 
   <!-- Task Filter Component -->
   <app-task-filter></app-task-filter>
+
+  <!-- Overlay Background -->
+  <div *ngIf="isAddTaskVisible" class="overlay">
+    <div class="add-task-form">
+      <h3>Create New Task</h3>
+      <form (ngSubmit)="createTask()">
+        <div>
+          <label for="taskTitle">Task Title</label>
+          <input
+            type="text"
+            id="taskTitle"
+            [(ngModel)]="newTask.title"
+            name="title"
+            required
+          />
+        </div>
+        <div>
+          <label for="taskDescription">Description</label>
+          <textarea
+            id="taskDescription"
+            [(ngModel)]="newTask.description"
+            name="description"
+            required
+          ></textarea>
+        </div>
+        <div>
+          <label for="dueDate">Due Date</label>
+          <input
+            type="date"
+            id="dueDate"
+            [(ngModel)]="newTask.dueDate"
+            name="dueDate"
+            required
+          />
+        </div>
+        <div class="group-btn">
+          <button type="submit">Create Task</button>
+          <button type="button" (click)="toggleAddTask()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- Task List Component -->
   <app-task-list></app-task-list>
