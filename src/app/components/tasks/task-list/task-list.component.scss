@@ -7,8 +7,8 @@
 
 /* From Uiverse.io by akshat-patel28 */
 .card {
-  width: 330px;
-  height: 80px;
+  // width: 330px;
+  height: 100%;
   border-radius: 8px;
   box-sizing: border-box;
   padding: 10px 15px;
@@ -18,8 +18,9 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 15px;
+  overflow: hidden;
 }
 /* From Uiverse.io by andrew-demchenk0 */
 .checkbox-container {
@@ -84,6 +85,7 @@
   justify-content: center;
   align-items: flex-start;
   flex-grow: 1;
+  max-width: 100%;
 }
 .message-text,
 .sub-text {
@@ -92,13 +94,28 @@
 }
 .message-text {
   color: #269b24;
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  // white-space: nowrap;
 }
 .sub-text {
-  font-size: 14px;
+  font-size: 0.9rem;
   color: #555;
+  overflow: hidden;
+  max-height: 70px;
+  text-overflow: ellipsis;
+  while-space: nowrap;
 }
+
+.task-date{
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #555;
+  margin: 0;
+}
+
 .cross-icon {
   width: 18px;
   height: 18px;
@@ -111,6 +128,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.button{
+  padding: 4px;
 }
 
 @media (max-width: 900px) {
