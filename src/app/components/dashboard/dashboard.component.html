@@ -39,12 +39,12 @@
   <h3 class="username">Hello, {{ userData.unique_name }}</h3>
 
   <!-- Task Filter Component -->
-  <app-task-filter></app-task-filter>
+  <app-task-filter (filterChange)="onFilterChange($event)"></app-task-filter>
 
   <!-- Overlay Background -->
   <div *ngIf="isAddTaskVisible" class="overlay">
     <div class="add-task-form">
-      <h3>Create New Task</h3>
+      <h3>{{ formMode === "create" ? "Add Task" : "Update Task" }}</h3>
       <form (ngSubmit)="createTask()">
         <div>
           <label for="taskTitle">Task Title</label>
@@ -76,7 +76,9 @@
           />
         </div>
         <div class="group-btn">
-          <button type="submit">Create Task</button>
+          <button type="submit">
+            {{ formMode === "create" ? "Create Task" : "Update Task" }}
+          </button>
           <button type="button" (click)="toggleAddTask()">Cancel</button>
         </div>
       </form>
@@ -84,5 +86,9 @@
   </div>
 
   <!-- Task List Component -->
-  <app-task-list [tasks]="tasks"></app-task-list>
+  <app-task-list
+    [tasks]="filteredTasks"
+    [userId]="userData.sub"
+    (editTask)="editTask($event)"
+  ></app-task-list>
 </div>

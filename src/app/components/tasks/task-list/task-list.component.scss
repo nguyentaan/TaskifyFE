@@ -96,17 +96,15 @@
   color: #269b24;
   font-size: 1.1rem;
   font-weight: bold;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  // white-space: nowrap;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
 }
 .sub-text {
   font-size: 0.9rem;
   color: #555;
-  overflow: hidden;
   max-height: 70px;
+  overflow: hidden;
   text-overflow: ellipsis;
-  while-space: nowrap;
 }
 
 .task-date{
