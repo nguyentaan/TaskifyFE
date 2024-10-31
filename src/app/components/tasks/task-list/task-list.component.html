@@ -1,15 +1,21 @@
 <div class="task-list-container">
+  <p *ngIf="isLoading">Loading tasks...</p>
   <!-- Task Cards -->
-  <ng-container *ngIf="true; else noTasks">
-
-    <div class="card">
+  <ng-container *ngIf="tasks.length > 0; else noTasks">
+    <div *ngFor="let task of tasks" class="card">
       <label class="checkbox-container">
-        <input checked="checked" type="checkbox" />
+        <input
+          type="checkbox"
+          [checked]="task.isCompleted"
+          [disabled]="task.isCompleted"
+        />
         <div class="checkmark"></div>
       </label>
+
       <div class="message-text-container">
-        <p class="message-text">Error message</p>
-        <p class="sub-text">An error occurred, please try again</p>
+        <p class="message-text">{{ task.title }}</p>
+        <p class="sub-text">{{ task.description }}</p>
+        <p class="task-date">Due Date: {{ task.dueDate | date : "dd/MM/yyyy" }}</p>
       </div>
       <div class="action-button">
         <button class="button">
