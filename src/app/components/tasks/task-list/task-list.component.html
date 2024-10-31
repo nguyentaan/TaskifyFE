@@ -2,12 +2,13 @@
   <p *ngIf="isLoading">Loading tasks...</p>
   <!-- Task Cards -->
   <ng-container *ngIf="tasks.length > 0; else noTasks">
-    <div *ngFor="let task of tasks" class="card">
+    <div *ngFor="let task of tasks | sort : 'asc'" class="card">
       <label class="checkbox-container">
         <input
           type="checkbox"
           [checked]="task.isCompleted"
           [disabled]="task.isCompleted"
+          (change)="updateTaskStatus(task.id!, !task.isCompleted)"
         />
         <div class="checkmark"></div>
       </label>
@@ -15,10 +16,12 @@
       <div class="message-text-container">
         <p class="message-text">{{ task.title }}</p>
         <p class="sub-text">{{ task.description }}</p>
-        <p class="task-date">Due Date: {{ task.dueDate | date : "dd/MM/yyyy" }}</p>
+        <p class="task-date">
+          Due Date: {{ task.dueDate | date : "dd/MM/yyyy" }}
+        </p>
       </div>
       <div class="action-button">
-        <button class="button">
+        <button class="button" (click)="onEdit(task)">
           <svg
             fill="#000000"
             width="17px"
@@ -86,7 +89,7 @@
             </g>
           </svg>
         </button>
-        <button class="button">
+        <button class="button" (click)="deleteTask(task.id!)">
           <svg
             width="17px"
             height="17px"

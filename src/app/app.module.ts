@@ -28,6 +28,7 @@ import { tokenInterceptor } from './interceptors/token.interceptor';
 import { TaskFormComponent } from './components/tasks/task-form/task-form.component';
 import { TaskFilterComponent } from './components/tasks/task-filter/task-filter.component';
 import { TaskListComponent } from './components/tasks/task-list/task-list.component';
+import { SortPipe } from './pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { TaskListComponent } from './components/tasks/task-list/task-list.compon
     TaskListComponent,
     TaskFormComponent,
     TaskFilterComponent,
+    SortPipe,
   ],
   imports: [
     BrowserModule,
