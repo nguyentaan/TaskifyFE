@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TaskService } from '../../../services/task.service';
+import { SnackbarService } from '../../../services/snackbar.service';
 import { Task } from '../../../models/task.model';
 
 @Component({
@@ -13,7 +14,10 @@ export class TaskListComponent implements OnInit {
   @Output() editTask = new EventEmitter<Task>();
   isLoading = true;
 
-  constructor(private taskService: TaskService) {}
+  constructor(
+    private taskService: TaskService,
+    private snackbar: SnackbarService
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = false; // Set loading to false when component initializes
@@ -41,8 +45,12 @@ export class TaskListComponent implements OnInit {
     this.taskService.deleteTask(taskId).subscribe({
       next: (response) => {
         this.tasks = this.tasks.filter((t) => t.id !== taskId);
+        this.snackbar.showSuccess('Task deleted successfully');
       },
-      error: (error) => console.error(error),
+      error: (error) => {
+        console.error(error);
+        this.snackbar.showError('Task deletion failed');
+      },
     });
   }
 }

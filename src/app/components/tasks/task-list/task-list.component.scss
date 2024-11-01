@@ -3,6 +3,9 @@
   grid-template-columns: repeat(4, 1fr); /* Three columns */
   gap: 16px; /* Space between grid items */
   padding: 16px; /* Add some padding around the container */
+  align-items: center;
+  justify-items: center;
+  min-height: 200px;
 }
 
 /* From Uiverse.io by akshat-patel28 */
@@ -107,7 +110,7 @@
   text-overflow: ellipsis;
 }
 
-.task-date{
+.task-date {
   font-size: 0.8rem;
   font-weight: bold;
   color: #555;
@@ -128,8 +131,22 @@
   align-items: center;
 }
 
-.button{
+.button {
   padding: 4px;
+}
+
+/* Example styles for the no-tasks message */
+.no-tasks-message {
+  grid-column: 1 / -1;
+  font-size: 1.2rem;
+  color: #888888; /* Gray color */
+  text-align: center;
+  padding: 20px;
+  border: 1px dashed #cccccc; /* Dashed border */
+  border-radius: 8px; /* Rounded corners */
+  margin: 20px auto; /* Center horizontally with margin */
+  max-width: 500px; /* Optional max width */
+  background-color: #f9f9f9; /* Light background color */
 }
 
 @media (max-width: 900px) {

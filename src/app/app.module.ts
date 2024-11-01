@@ -8,6 +8,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import {
   BrowserModule,
@@ -54,6 +55,7 @@ import { SortPipe } from './pipes/sort.pipe';
     MatCardModule,
     MatIconModule,
     MatCheckboxModule,
+    MatSnackBarModule,
   ],
   providers: [
     provideClientHydration(),

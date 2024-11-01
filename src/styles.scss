@@ -12,22 +12,58 @@ body {
   // justify-content: center;
   // align-items: center;
   min-height: 100vh;
-  background: #FBFBFB;
+  background: #fbfbfb;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-button{
+button {
   cursor: pointer;
   border: none;
   outline: none;
   background: none;
+}
+
+.mat-mdc-snackbar-surface{
+  padding: 0 !important;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-snackbar-surface{
+  background-color: transparent !important;
+}
+
+.custom-success-snackbar {
+  background-color: #4caf50 !important; /* Green for success */
+  color: #ffffff !important;
+}
+
+.custom-error-snackbar {
+  background-color: #f44336 !important; /* Red for errors */
+  color: #ffffff !important;
 }
