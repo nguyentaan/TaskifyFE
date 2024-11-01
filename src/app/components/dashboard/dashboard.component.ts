@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TaskService } from '../../services/task.service';
+import { SnackbarService } from '../../services/snackbar.service';
 import { Task } from '../../models/task.model';
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private snackbar: SnackbarService,
   ) {}
 
   ngOnInit(): void {
@@ -60,19 +62,23 @@ export class DashboardComponent implements OnInit {
       this.taskService.createTask(taskToCreate).subscribe(
         (createdTask: Task) => {
           console.log('New Task Created:', createdTask);
+          this.snackbar.showSuccess('Task created successfully');
           this.resetTaskForm();
           this.isAddTaskVisible = false;
           this.getTaskById(this.userData.sub);
         },
         (error: any) => {
           console.error('Error creating task:', error);
+          this.snackbar.showError('Error creating task. Please try again');
         }
       );
     } else if (this.formMode === 'update' && this.task) {
       if (this.task && this.task.id !== undefined) {
         this.updateTask(this.task.id, taskToCreate); // Assume 'id' is a property of Task
+        this.snackbar.showSuccess('Task updated successfully');
       } else {
         console.error('Task ID is undefined');
+        this.snackbar.showError('Error updating task. Please try again');
       }
     }
   }
