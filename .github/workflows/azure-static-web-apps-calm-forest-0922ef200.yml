@@ -19,10 +19,24 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Specify the Node.js version to use
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Install Dependencies
+        run: npm install # Install project dependencies
+
       - name: Build Angular App
-        run: ng build --prod # Add this line to ensure the app is built
+        run: ng build --prod # Build the Angular application
+
       - name: List Output Directory
         run: ls -R dist/taskify-fe # Verify the output files are present
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
