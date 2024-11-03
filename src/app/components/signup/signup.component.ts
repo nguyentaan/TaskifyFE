@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { RegisterRequest } from '../../models/register-request.model';
+import { SnackbarService } from '../../services/snackbar.service';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -15,7 +17,11 @@ export class SignupComponent {
   isLoading = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private snackbar: SnackbarService
+  ) {}
   onRegister() {
     this.isLoading = true;
     this.errorMessage = '';
@@ -30,11 +36,13 @@ export class SignupComponent {
       email: this.email,
       password: this.password,
     };
-    console.log(registerRequest);
 
     this.authService.register(registerRequest).subscribe(
       () => {
         this.isLoading = false;
+        this.snackbar.showSuccess(
+          'Registration successful. Please login to continue.'
+        );
         this.router.navigate(['/login']);
       },
       (error) => {
@@ -44,10 +52,26 @@ export class SignupComponent {
           this.errorMessage = error.error
             .map((err: { description: string }) => err.description)
             .join(', ');
+          this.errorMessage =
+            this.errorMessage.charAt(0).toUpperCase() +
+            this.errorMessage.slice(1);
+          this.snackbar.showError(this.errorMessage);
         } else {
           this.errorMessage = 'Registration failed. Please try again.'; // Generic error message
+
+          this.snackbar.showError(this.errorMessage);
         }
       }
     );
+  }
+
+  passwordValidation(): boolean {
+    const passwordPattern =
+      /^(?=.*[0-9])(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.]{6,}$/;
+    return this.password ? passwordPattern.test(this.password) : false;
+  }
+
+  passWordsMatch(): boolean {
+    return this.password === this.confirmPassword;
   }
 }
