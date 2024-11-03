@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
       (response: Task[]) => {
         this.tasks = response;
         this.filteredTasks = this.tasks;
-        console.log('Task:', this.tasks);
+        // console.log('Task:', this.tasks);
       },
       (error: any) => {
         console.log(error);
@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
     if (this.formMode === 'create') {
       this.taskService.createTask(taskToCreate).subscribe(
         (createdTask: Task) => {
-          console.log('New Task Created:', createdTask);
+          // console.log('New Task Created:', createdTask);
           this.snackbar.showSuccess('Task created successfully');
           this.resetTaskForm();
           this.isAddTaskVisible = false;
@@ -86,7 +86,7 @@ export class DashboardComponent implements OnInit {
   updateTask(taskId: number, task: Task): void {
     this.taskService.updateTask(taskId, task).subscribe(
       (updatedTask: Task) => {
-        console.log('Task Updated:', updatedTask);
+        // console.log('Task Updated:', updatedTask);
         this.getTaskById(this.userData.sub);
         this.resetTaskForm();
         this.isAddTaskVisible = false;
