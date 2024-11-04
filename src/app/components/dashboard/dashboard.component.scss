@@ -213,3 +213,12 @@ app-task-list {
 .add-task-form button[type="button"]:hover {
   background-color: #b3b3b3; /* Darker gray on hover */
 }
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff; /* Color of spinner border */
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
