@@ -76,8 +76,9 @@
           />
         </div>
         <div class="group-btn">
-          <button type="submit">
-            {{ formMode === "create" ? "Create Task" : "Update Task" }}
+          <button type="submit" [disabled]="isLoading">
+            <span *ngIf="!isLoading">{{ formMode === "create" ? "Create Task" : "Update Task" }}</span>
+            <span *ngIf="isLoading" class="spinner"></span>
           </button>
           <button type="button" (click)="toggleAddTask()">Cancel</button>
         </div>

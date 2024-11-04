@@ -11,6 +11,7 @@ import { Task } from '../../models/task.model';
 export class DashboardComponent implements OnInit {
   userData: any;
   isAddTaskVisible = false;
+  isLoading = false;
   task: Task | undefined;
   newTask = { title: '', description: '', dueDate: '', userId: '' };
   tasks: Task[] = [];
@@ -53,6 +54,7 @@ export class DashboardComponent implements OnInit {
   }
 
   createTask(): void {
+    this.isLoading = true;
     const taskToCreate: Task = {
       ...this.newTask,
       dueDate: new Date(this.newTask.dueDate), // Convert to Date type
@@ -65,19 +67,23 @@ export class DashboardComponent implements OnInit {
           this.snackbar.showSuccess('Task created successfully');
           this.resetTaskForm();
           this.isAddTaskVisible = false;
+          this.isLoading = false;
           this.getTaskById(this.userData.sub);
         },
         (error: any) => {
           console.error('Error creating task:', error);
+          this.isLoading = false;
           this.snackbar.showError('Error creating task. Please try again');
         }
       );
     } else if (this.formMode === 'update' && this.task) {
       if (this.task && this.task.id !== undefined) {
         this.updateTask(this.task.id, taskToCreate); // Assume 'id' is a property of Task
+        this.isLoading = false;
         this.snackbar.showSuccess('Task updated successfully');
       } else {
         console.error('Task ID is undefined');
+        this.isLoading = false;
         this.snackbar.showError('Error updating task. Please try again');
       }
     }

@@ -9,6 +9,8 @@ import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode'; // Import the jwt-decode library
 
+declare const gapi: any;
+
 @Injectable({
   providedIn: 'root',
 })
