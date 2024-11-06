@@ -25,11 +25,30 @@ import {
   withFetch,
   withInterceptors,
 } from '@angular/common/http';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { tokenInterceptor } from './interceptors/token.interceptor';
 import { TaskFormComponent } from './components/tasks/task-form/task-form.component';
 import { TaskFilterComponent } from './components/tasks/task-filter/task-filter.component';
 import { TaskListComponent } from './components/tasks/task-list/task-list.component';
 import { SortPipe } from './pipes/sort.pipe';
+import { GoogleSignInComponent } from './components/google-sign-in/google-sign-in.component';
+
+// Configuration for Google Login
+const googleLoginOptions: SocialAuthServiceConfig = {
+  autoLogin: false,
+  providers: [
+    {
+      id: GoogleLoginProvider.PROVIDER_ID,
+      provider: new GoogleLoginProvider(
+        '949928109687-ualg36c3l1v73dtqmudotboi79f7pvds.apps.googleusercontent.com'
+      ),
+    },
+  ],
+};
 
 @NgModule({
   declarations: [
@@ -41,13 +60,14 @@ import { SortPipe } from './pipes/sort.pipe';
     TaskFormComponent,
     TaskFilterComponent,
     SortPipe,
+    GoogleSignInComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    MatFormFieldModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
     MatDatepickerModule,
     MatInputModule,
     MatButtonModule,
@@ -56,8 +76,14 @@ import { SortPipe } from './pipes/sort.pipe';
     MatIconModule,
     MatCheckboxModule,
     MatSnackBarModule,
+    SocialLoginModule,
   ],
   providers: [
+    // Initialize the social auth service configuration
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: googleLoginOptions,
+    },
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(withFetch(), withInterceptors([tokenInterceptor])),

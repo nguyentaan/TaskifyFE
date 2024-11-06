@@ -1,19 +1,40 @@
 /* From Uiverse.io by micaelgomestavares */
 .form-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
+
+.form-contain {
+  background-color: #ffffff;
+  border: 1px solid #ecedec;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  width: 450px;
+  border-radius: 20px;
+}
+
+.h3 {
+  font-size: 1.75rem; /* Increase font size */
+  font-weight: bold; /* Make the text bold */
+  color: #4a90e2; /* Set a primary color */
+  text-align: center; /* Center-align the text */
+  margin-bottom: 20px; /* Add space below the heading */
+  padding: 10px; /* Add some padding for extra space */
+  border-bottom: 2px solid #ddd; /* Optional: underline with a border */
+  font-family: "Arial", sans-serif; /* Use a clean, readable font */
+}
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: #ffffff;
-  padding: 30px;
-  width: 450px;
-  border-radius: 20px;
-  border: 1px solid #ecedec;
+  width: 100%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
@@ -102,7 +123,8 @@
   text-align: center;
   color: black;
   font-size: 14px;
-  margin: 5px 0;
+  margin-top: 5px;
+  margin-bottom: 0;
 }
 
 .btn {
@@ -176,18 +198,28 @@
   transition: background-color 0.3s, transform 0.2s; /* Animation for hover effects */
 }
 
-.google-signin-button:hover {
-  background-color: #357ae8; /* Darker blue on hover */
-  transform: translateY(-2px); /* Slight lift effect */
+.separator {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  color: #8b8e98;
+  margin: 20px 0;
 }
 
-.google-signin-button:active {
-  transform: translateY(1px); /* Pressed effect */
+.separator .line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background-color: #e8e8e8;
 }
 
-.google-signin-button:focus {
-  outline: none; /* Remove focus outline */
-  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.5); /* Add a focus ring */
+app-google-sign-in{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 @keyframes spin {
