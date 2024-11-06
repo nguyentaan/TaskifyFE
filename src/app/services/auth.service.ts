@@ -8,8 +8,10 @@ import { RegisterResponse } from '../models/register-response.model';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode'; // Import the jwt-decode library
-
-declare const gapi: any;
+// import {
+//   SocialAuthService,
+//   GoogleLoginProvider,
+// } from '@abacritt/angularx-social-login';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +19,11 @@ declare const gapi: any;
 export class AuthService {
   private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    // private socialAuthService: SocialAuthService
+  ) {}
 
   login(loginRequest: LoginRequest): Observable<LoginResponse> {
     return this.http
@@ -50,6 +56,21 @@ export class AuthService {
           return throwError(
             () => new Error('Registration failed. Please try again.')
           );
+        })
+      );
+  }
+
+  googleSignIn(idToken: string): Observable<any> {
+    return this.http
+      .post(`${this.apiUrl}/api/auth/google-signin`, { idToken })
+      .pipe(
+        tap((response: any) => {
+          const token = response.token;          
+          localStorage.setItem('token', token);
+        }),
+        catchError((error) => {
+          console.error('Google sign-in error:', error);
+          return throwError(() => new Error('Google sign-in failed.'));
         })
       );
   }

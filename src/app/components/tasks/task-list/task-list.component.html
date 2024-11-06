@@ -2,7 +2,11 @@
   <p *ngIf="isLoading">Loading tasks...</p>
   <!-- Task Cards -->
   <ng-container *ngIf="tasks.length > 0; else noTasks">
-    <div *ngFor="let task of tasks | sort : 'asc'" class="card">
+    <div
+      *ngFor="let task of tasks | sort : 'asc'"
+      class="card"
+      [ngClass]="{ 'dark-background': isPastDue(task) && !task.isCompleted }"
+    >
       <label class="checkbox-container">
         <input
           type="checkbox"
@@ -14,7 +18,7 @@
       </label>
 
       <div class="message-text-container">
-        <p class="message-text">{{ task.title }}</p>
+        <p [ngClass]="taskTitleClass(task)">{{ task.title }}</p>
         <p class="sub-text">{{ task.description }}</p>
         <p class="task-date">
           Due Date: {{ task.dueDate | date : "dd/MM/yyyy" }}

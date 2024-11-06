@@ -2,7 +2,10 @@
   <div class="header">
     <h1>Taskify</h1>
     <div class="group-btn">
-      <button class="add-btn" (click)="toggleAddTask()">+ Add New Task</button>
+      <button class="add-btn" (click)="toggleAddTask()">
+        <p class="icon-add">+</p>
+        <p class="title-add">Add Task</p>
+      </button>
       <button class="logout-btn" (click)="logout()">
         <svg
           width="24px"
@@ -77,7 +80,9 @@
         </div>
         <div class="group-btn">
           <button type="submit" [disabled]="isLoading">
-            <span *ngIf="!isLoading">{{ formMode === "create" ? "Create Task" : "Update Task" }}</span>
+            <span *ngIf="!isLoading">{{
+              formMode === "create" ? "Create Task" : "Update Task"
+            }}</span>
             <span *ngIf="isLoading" class="spinner"></span>
           </button>
           <button type="button" (click)="toggleAddTask()">Cancel</button>

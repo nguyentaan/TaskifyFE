@@ -53,4 +53,25 @@ export class TaskListComponent implements OnInit {
       },
     });
   }
+
+  isPastDue(task: Task): boolean {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set to midnight to avoid time-based issues
+
+    const dueDate = task.dueDate ? new Date(task.dueDate) : undefined;
+
+    if (!dueDate) {
+      return false;
+    }
+
+    // Calculate the date that is one day before today
+    const pastDueDate = new Date(today);
+    pastDueDate.setDate(today.getDate() - 1);
+
+    return !task.isCompleted && dueDate < pastDueDate;
+  }
+
+  taskTitleClass(task: Task): string {
+    return task.isCompleted ? 'task-title-completed' : 'task-title-incomplete';
+  }
 }

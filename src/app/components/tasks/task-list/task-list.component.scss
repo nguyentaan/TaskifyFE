@@ -25,6 +25,10 @@
   gap: 15px;
   overflow: hidden;
 }
+.dark-background {
+  background-color: #c2c1c1; /* Dark background color */
+  color: #fff; /* Adjust text color if needed for readability */
+}
 /* From Uiverse.io by andrew-demchenk0 */
 .checkbox-container {
   --input-focus: #269b24;
@@ -35,6 +39,18 @@
   position: relative;
   cursor: pointer;
   display: inline-block; /* Allow the container to size to its content */
+}
+
+.task-title-completed {
+  color: #7ed4ad;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.task-title-incomplete {
+  color: #d76c82;
+  font-weight: bold;
+  margin-bottom: 0;
 }
 
 .checkbox-container input {
