@@ -21,8 +21,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
-    // private socialAuthService: SocialAuthService
+    private router: Router // private socialAuthService: SocialAuthService
   ) {}
 
   login(loginRequest: LoginRequest): Observable<LoginResponse> {
@@ -65,7 +64,7 @@ export class AuthService {
       .post(`${this.apiUrl}/api/auth/google-signin`, { idToken })
       .pipe(
         tap((response: any) => {
-          const token = response.token;          
+          const token = response.token;
           localStorage.setItem('token', token);
         }),
         catchError((error) => {
@@ -77,6 +76,8 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token'); // Remove token from localStorage
-    this.router.navigate(['/login']); // Redirect to the login page
+    this.router.navigate(['/login']).then(() => {
+      window.location.reload(); // Refresh the page after navigation is complete
+    });
   }
 }

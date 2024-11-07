@@ -55,20 +55,17 @@ export class TaskListComponent implements OnInit {
   }
 
   isPastDue(task: Task): boolean {
+    // Ensure the task has a due date and that it’s valid
+    if (!task.dueDate) return false;
+
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Set to midnight to avoid time-based issues
+    today.setHours(0, 0, 0, 0); // Set to midnight
 
-    const dueDate = task.dueDate ? new Date(task.dueDate) : undefined;
+    const dueDate = new Date(task.dueDate);
+    dueDate.setHours(0, 0, 0, 0); // Set due date to midnight for accurate comparison
 
-    if (!dueDate) {
-      return false;
-    }
-
-    // Calculate the date that is one day before today
-    const pastDueDate = new Date(today);
-    pastDueDate.setDate(today.getDate() - 1);
-
-    return !task.isCompleted && dueDate < pastDueDate;
+    // Check if task is incomplete and the due date is before today
+    return !task.isCompleted && dueDate < today;
   }
 
   taskTitleClass(task: Task): string {
