@@ -15,7 +15,7 @@ export class LoginComponent {
   isLoading=false;
 
   constructor(private authService: AuthService, private router: Router, private snackbar: SnackbarService) {}
-
+  
   onLogin() {
     this.isLoading=true;
     const loginRequest: LoginRequest = {
