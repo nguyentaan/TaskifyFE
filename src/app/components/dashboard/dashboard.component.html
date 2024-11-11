@@ -80,10 +80,10 @@
         </div>
         <div class="group-btn">
           <button type="submit" [disabled]="isLoading">
-            <span *ngIf="!isLoading">{{
+            <span *ngIf="!isLoadingT">{{
               formMode === "create" ? "Create Task" : "Update Task"
             }}</span>
-            <span *ngIf="isLoading" class="spinner"></span>
+            <span *ngIf="isLoadingT" class="spinner"></span>
           </button>
           <button type="button" (click)="toggleAddTask()">Cancel</button>
         </div>
@@ -91,8 +91,21 @@
     </div>
   </div>
 
+  <!-- Skeleton Loader -->
+  <div *ngIf="isLoading" class="skeleton-container">
+    <div class="skeleton-card" *ngFor="let _ of [1, 2, 3, 4]">
+      <div class="skeleton-checkmark"></div>
+      <div class="skeleton-text">
+        <div class="skeleton-title"></div>
+        <div class="skeleton-description"></div>
+        <div class="skeleton-date"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Task List Component -->
   <app-task-list
+    *ngIf="!isLoading"
     [tasks]="filteredTasks"
     [userId]="userData.sub"
     (editTask)="editTask($event)"

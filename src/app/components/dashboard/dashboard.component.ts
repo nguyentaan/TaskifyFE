@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
   userData: any;
   isAddTaskVisible = false;
   isLoading = false;
+  isLoadingT = false;
   task: Task | undefined;
   newTask = { title: '', description: '', dueDate: '', userId: '' };
   tasks: Task[] = [];
@@ -21,7 +22,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private taskService: TaskService,
-    private snackbar: SnackbarService,
+    private snackbar: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -41,20 +42,23 @@ export class DashboardComponent implements OnInit {
   }
 
   getTaskById(userId: string): void {
+    this.isLoading = true;
     this.taskService.getTaskById(userId).subscribe(
       (response: Task[]) => {
         this.tasks = response;
         this.filteredTasks = this.tasks;
+        this.isLoading = false;
         // console.log('Task:', this.tasks);
       },
       (error: any) => {
+        this.isLoading = false;
         console.log(error);
       }
     );
   }
 
   createTask(): void {
-    this.isLoading = true;
+    this.isLoadingT = true;
     const taskToCreate: Task = {
       ...this.newTask,
       dueDate: new Date(this.newTask.dueDate), // Convert to Date type
@@ -67,23 +71,23 @@ export class DashboardComponent implements OnInit {
           this.snackbar.showSuccess('Task created successfully');
           this.resetTaskForm();
           this.isAddTaskVisible = false;
-          this.isLoading = false;
+          this.isLoadingT = false;
           this.getTaskById(this.userData.sub);
         },
         (error: any) => {
           console.error('Error creating task:', error);
-          this.isLoading = false;
+          this.isLoadingT = false;
           this.snackbar.showError('Error creating task. Please try again');
         }
       );
     } else if (this.formMode === 'update' && this.task) {
       if (this.task && this.task.id !== undefined) {
         this.updateTask(this.task.id, taskToCreate); // Assume 'id' is a property of Task
-        this.isLoading = false;
+        this.isLoadingT = false;
         this.snackbar.showSuccess('Task updated successfully');
       } else {
         console.error('Task ID is undefined');
-        this.isLoading = false;
+        this.isLoadingT = false;
         this.snackbar.showError('Error updating task. Please try again');
       }
     }
