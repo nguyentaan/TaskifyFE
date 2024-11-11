@@ -225,16 +225,123 @@ app-task-list {
 }
 
 .spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid #fff; /* Color of spinner border */
-  border-top: 2px solid transparent;
+  width: 24px;
+  height: 100%;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #ff6969;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.skeleton-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 16px;
+  align-items: stretch;
+}
+
+.skeleton-card {
+  background-color: #f0f0f0;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Increase spacing between elements */
+  animation: pulse 1.5s infinite ease-in-out;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.skeleton-checkmark {
+  width: 18px; /* Slightly larger size for better visibility */
+  height: 18px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Space between skeleton text elements */
+  width: 100%;
+}
+
+.skeleton-title,
+.skeleton-description,
+.skeleton-date {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-title {
+  width: 60%;
+  height: 20px;
+}
+
+.skeleton-description {
+  width: 80%;
+  height: 15px;
+}
+
+.skeleton-date {
+  width: 40%;
+  height: 15px;
+}
+
+/* Keyframes for pulse animation */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .skeleton-container {
+    grid-template-columns: repeat(2, 1fr); /* Adjust to 2 columns */
+  }
+}
+
+@media (max-width: 600px) {
+  .skeleton-container {
+    grid-template-columns: 1fr; /* Adjust to 1 column */
+  }
+}
+
+@media (max-width: 600px) {
+  .skeleton-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 900px) {
   .title-add {
     display: none;
+  }
+  .skeleton-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

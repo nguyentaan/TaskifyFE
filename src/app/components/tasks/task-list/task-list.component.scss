@@ -29,17 +29,6 @@
   background-color: #c2c1c1; /* Dark background color */
   color: #fff; /* Adjust text color if needed for readability */
 }
-/* From Uiverse.io by andrew-demchenk0 */
-.checkbox-container {
-  --input-focus: #269b24;
-  --input-out-of-focus: #ccc;
-  --bg-color: #fff;
-  --bg-color-alt: #666;
-  --main-color: #323232;
-  position: relative;
-  cursor: pointer;
-  display: inline-block; /* Allow the container to size to its content */
-}
 
 .task-title-completed {
   color: #7ed4ad;
@@ -53,50 +42,79 @@
   margin-bottom: 0;
 }
 
-.checkbox-container input {
-  position: absolute;
-  opacity: 0;
-  /* You can keep the input size as it is hidden */
-}
-
-.checkmark {
-  width: 20px; /* Width of the checkbox */
-  height: 20px; /* Height of the checkbox */
-  position: relative;
-  top: 0;
-  left: 0;
-  border: 2px solid var(--main-color);
-  border-radius: 5px;
-  box-shadow: 4px 4px var(--main-color);
-  background-color: var(--input-out-of-focus);
-  transition: all 0.3s;
-}
-
-.checkbox-container input:checked ~ .checkmark {
-  background-color: #269b24;
-}
-
-.checkmark:after {
-  content: "";
-  width: 4px; /* Width of the checkmark */
-  height: 10px; /* Height of the checkmark */
-  position: absolute;
-  top: 1px; /* Adjusted to fit well within the checkbox */
-  left: 5px; /* Centered within the checkbox */
-  display: none;
-  border: solid var(--bg-color);
-  border-width: 0 2.5px 2.5px 0;
-  transform: rotate(45deg);
-}
-
-.checkbox-container input:checked ~ .checkmark:after {
-  display: block;
-}
-
 .icon {
   width: 17px;
   height: 17px;
   color: #269b24;
+}
+
+/* From Uiverse.io by PriyanshuGupta28 */
+.checkbox-wrapper:hover .check {
+  stroke-dashoffset: 0;
+}
+
+.checkbox-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+
+.checkbox-wrapper .background {
+  fill: #d76c82; /* Change the background color to green */
+  transition: ease all 0.6s;
+  -webkit-transition: ease all 0.6s;
+}
+
+.checkbox-wrapper .stroke {
+  fill: none;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  stroke-width: 2px;
+  stroke-dashoffset: 100;
+  stroke-dasharray: 100;
+  transition: ease all 0.6s;
+  -webkit-transition: ease all 0.6s;
+}
+
+.checkbox-wrapper .check {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+  stroke-dashoffset: 22;
+  stroke-dasharray: 22;
+  transition: ease all 0.6s;
+  -webkit-transition: ease all 0.6s;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  margin: 0;
+  opacity: 0;
+  -appearance: none;
+  -webkit-appearance: none;
+}
+
+.checkbox-wrapper input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked + svg .background {
+  fill: #7ed4ad; /* Change the background color when checked to blue */
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked + svg .stroke {
+  stroke-dashoffset: 0;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked + svg .check {
+  stroke-dashoffset: 0;
 }
 .message-text-container {
   display: flex;

@@ -7,17 +7,21 @@ import { SnackbarService } from '../../services/snackbar.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   email = '';
   password = '';
-  isLoading=false;
+  isLoading = false;
 
-  constructor(private authService: AuthService, private router: Router, private snackbar: SnackbarService) {}
-  
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private snackbar: SnackbarService
+  ) {}
+
   onLogin() {
-    this.isLoading=true;
+    this.isLoading = true;
     const loginRequest: LoginRequest = {
       email: this.email,
       password: this.password,
@@ -25,7 +29,7 @@ export class LoginComponent {
     this.authService.login(loginRequest).subscribe(
       (response) => {
         // console.log('Login successful', response);
-        this.isLoading=false;
+        this.isLoading = false;
         this.snackbar.showSuccess('Login successful');
         this.router.navigate(['/dashboard']);
         // Add navigation or additional actions upon successful login
@@ -33,9 +37,19 @@ export class LoginComponent {
       (error) => {
         console.error('Error:', error);
         this.snackbar.showError('Login failed, Please Try Again');
-        this.isLoading=false;
+        this.isLoading = false;
         // Display error message to user if needed
       }
     );
+  }
+
+  // Handle the loading state from the Google Sign-In component
+  onGoogleLoadingChange(isLoading: boolean) {
+    this.isLoading = isLoading;
+  }
+
+  // Check if the form is valid (both fields are non-empty)
+  isFormValid(): boolean {
+    return this.email.trim() !== '' && this.password.trim() !== '';
   }
 }

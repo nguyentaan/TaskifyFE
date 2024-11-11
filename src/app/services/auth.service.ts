@@ -30,7 +30,7 @@ export class AuthService {
       .pipe(
         tap((response: LoginResponse) => {
           const token = response.token; // Assuming response contains the token
-          localStorage.setItem('token', response.token);
+          localStorage.setItem('token', token);
         })
       );
   }

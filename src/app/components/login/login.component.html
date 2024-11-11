@@ -62,7 +62,11 @@
         </div>
         <span class="span">Forgot password?</span>
       </div>
-      <button type="submit" class="button-submit" [disabled]="isLoading">
+      <button
+        type="submit"
+        class="button-submit"
+        [disabled]="isLoading || !isFormValid()"
+      >
         <span *ngIf="!isLoading">Sign In</span>
         <span *ngIf="isLoading" class="spinner"></span>
       </button>
@@ -76,6 +80,8 @@
       <span>Or</span>
       <hr class="line" />
     </div>
-    <app-google-sign-in [isLoading]="isLoading"></app-google-sign-in>
+    <app-google-sign-in
+      (loadingChange)="onGoogleLoadingChange($event)"
+    ></app-google-sign-in>
   </div>
 </div>
