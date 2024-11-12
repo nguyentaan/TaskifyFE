@@ -6,15 +6,6 @@
       class="card"
       [ngClass]="{ 'dark-background': isPastDue(task) && !task.isCompleted }"
     >
-      <!-- <label class="checkbox-container">
-        <input
-          type="checkbox"
-          [checked]="task.isCompleted"
-          [disabled]="task.isCompleted"
-          (change)="updateTaskStatus(task.id!, !task.isCompleted)"
-        />
-        <div class="checkmark"></div>
-      </label> -->
       <label class="checkbox-wrapper">
         <input
           type="checkbox"
