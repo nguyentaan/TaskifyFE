@@ -79,7 +79,7 @@
           />
         </div>
         <div class="group-btn">
-          <button type="submit" [disabled]="isLoading">
+          <button type="submit" [disabled]="isLoadingT">
             <span *ngIf="!isLoadingT">{{
               formMode === "create" ? "Create Task" : "Update Task"
             }}</span>
