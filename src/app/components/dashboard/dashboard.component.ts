@@ -67,7 +67,6 @@ export class DashboardComponent implements OnInit {
     if (this.formMode === 'create') {
       this.taskService.createTask(taskToCreate).subscribe(
         (createdTask: Task) => {
-          // console.log('New Task Created:', createdTask);
           this.snackbar.showSuccess('Task created successfully');
           this.resetTaskForm();
           this.isAddTaskVisible = false;
@@ -82,9 +81,7 @@ export class DashboardComponent implements OnInit {
       );
     } else if (this.formMode === 'update' && this.task) {
       if (this.task && this.task.id !== undefined) {
-        this.updateTask(this.task.id, taskToCreate); // Assume 'id' is a property of Task
-        this.isLoadingT = false;
-        this.snackbar.showSuccess('Task updated successfully');
+        this.updateTask(this.task.id, taskToCreate);
       } else {
         console.error('Task ID is undefined');
         this.isLoadingT = false;
@@ -96,13 +93,15 @@ export class DashboardComponent implements OnInit {
   updateTask(taskId: number, task: Task): void {
     this.taskService.updateTask(taskId, task).subscribe(
       (updatedTask: Task) => {
-        // console.log('Task Updated:', updatedTask);
+        this.snackbar.showSuccess('Task updated successfully');
         this.getTaskById(this.userData.sub);
         this.resetTaskForm();
         this.isAddTaskVisible = false;
+        this.isLoadingT = false; // Move isLoadingT = false here
       },
       (error: any) => {
         console.error('Error updating task:', error);
+        this.isLoadingT = false; // And here, if there’s an error
       }
     );
   }
